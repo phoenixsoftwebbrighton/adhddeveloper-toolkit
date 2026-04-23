@@ -2,7 +2,8 @@
 
 > **The toolkit that speaks your language — not computer's.**
 
-CLI tools built for developers whose brains work differently. Plain English. No jargon. No shame.
+Developer tools that make sense for everyone. Plain English. No jargon. No shame.
+Built with neurodivergent developers in mind — but useful for any brain.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-purple.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-purple.svg)](https://www.python.org/downloads/)
@@ -16,9 +17,11 @@ CLI tools built for developers whose brains work differently. Plain English. No 
 
 Error messages written for machines. Git commands that need a PhD to understand. Infrastructure docs that assume you already know everything.
 
-If your brain works differently — ADHD, autism, dyslexia, or just wired uniquely — most developer tools weren't designed for you.
+You don't need a diagnosis to find this stuff overwhelming. But if your brain works differently — ADHD, autism, dyslexia, or just wired uniquely — these tools were built specifically with you in mind.
 
-**The ADHDeveloper Toolkit exists because one frustrated developer got tired of feeling like the problem. They weren't. And neither are you.**
+**Everyone deserves developer tools that work with their brain, not against it.**
+
+The ADHDeveloper Toolkit exists because one frustrated developer got tired of feeling like the problem. They weren't. And neither are you — whatever your brain looks like.
 
 ---
 
@@ -71,31 +74,24 @@ forge → unb     # suggests: unbound — recursive DNS resolver
 - pip
 - git
 
-### Installation
+### One command install
 
 ```bash
-# 1. Clone the toolkit
-git clone https://github.com/phoenixsoftwebbrighton/adhddeveloper-toolkit.git
-cd adhddeveloper-toolkit
+curl -fsSL https://raw.githubusercontent.com/phoenixsoftwebbrighton/adhddeveloper-toolkit/main/install.sh | bash
+```
 
-# 2. Clone the individual tools
-git clone https://github.com/phoenixsoftwebbrighton/gitspeak.git
-git clone https://github.com/phoenixsoftwebbrighton/decipher.git
-git clone https://github.com/phoenixsoftwebbrighton/ansible-forge.git
+Then reload your shell:
 
-# 3. Install dependencies
-pip install rich
-
-# 4. Add aliases to your shell (~/.zshrc or ~/.bashrc)
-echo 'alias gs="python3 ~/adhddeveloper-toolkit/gitspeak/gitspeak.py"' >> ~/.zshrc
-echo 'alias decipher="python3 ~/adhddeveloper-toolkit/decipher/decipher.py"' >> ~/.zshrc
-echo 'alias forge="python3 ~/adhddeveloper-toolkit/ansible-forge/ansible-forge.py"' >> ~/.zshrc
-
-# 5. Reload your shell
+```bash
 source ~/.zshrc
+```
 
-# 6. You're ready
-gs
+That's it. You're ready.
+
+```bash
+gs          # GitSpeak
+decipher    # Decipher
+forge       # ansible-forge
 ```
 
 ---
@@ -109,12 +105,12 @@ Every tool in this kit follows the same rules:
 - **Explain the why** — not just what to do, but why
 - **Never make you feel stupid** — because you're not
 - **Local compute only** — nothing phones home, privacy first
+- **For everyone** — designed with neurodivergent brains in mind, useful for all
 
 ---
 
 ## 🗺️ Roadmap
 
-- [ ] Install script — one command to set everything up
 - [ ] ansible-forge online package search
 - [ ] Decipher community database growth
 - [ ] Session wrap-up tool

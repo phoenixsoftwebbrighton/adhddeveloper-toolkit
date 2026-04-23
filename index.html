@@ -203,7 +203,7 @@
 
     .hero-sub {
       color: var(--muted);
-      max-width: 500px;
+      max-width: 560px;
       margin: 0 auto 2.5rem;
       animation: fadeUp 0.6s ease 0.3s both;
     }
@@ -278,7 +278,7 @@
     .problem p {
       color: var(--muted);
       font-size: 1.1rem;
-      max-width: 600px;
+      max-width: 640px;
       margin: 0 auto 1rem;
     }
 
@@ -341,9 +341,7 @@
       border-radius: 20px 20px 0 0;
     }
 
-    .tool-card:hover {
-      transform: translateY(-4px);
-    }
+    .tool-card:hover { transform: translateY(-4px); }
 
     .tool-card.gitspeak::before { background: var(--cyan); }
     .tool-card.gitspeak:hover { border-color: rgba(6,182,212,0.3); box-shadow: 0 8px 40px rgba(6,182,212,0.1); }
@@ -431,10 +429,7 @@
       margin-bottom: 1rem;
     }
 
-    .install p {
-      color: var(--muted);
-      margin-bottom: 2rem;
-    }
+    .install p { color: var(--muted); margin-bottom: 2rem; }
 
     .install-box {
       background: var(--bg);
@@ -445,7 +440,7 @@
       align-items: center;
       gap: 1rem;
       font-family: 'Space Mono', monospace;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: var(--purple);
       max-width: 100%;
       overflow-x: auto;
@@ -492,16 +487,8 @@
       margin-bottom: 0.5rem;
     }
 
-    .step-title {
-      font-weight: 600;
-      font-size: 0.95rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .step-desc {
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
+    .step-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.25rem; }
+    .step-desc { font-size: 0.85rem; color: var(--muted); }
 
     /* ── COMMUNITY ── */
     .community {
@@ -576,12 +563,8 @@
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
       .nav-links { display: none; }
       .hero-logo { flex-direction: column; }
@@ -607,7 +590,7 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-badge">🚀 Open source — built by a neurodivergent dev</div>
+    <div class="hero-badge">🚀 Open source — free forever — built with purpose</div>
 
     <div class="hero-logo">
       <div class="hero-brain">🧠</div>
@@ -622,8 +605,8 @@
     </p>
 
     <p class="hero-sub">
-      CLI tools built for developers whose brains work differently. 
-      Plain English. No jargon. No shame.
+      Developer tools that make sense for everyone — plain English, no jargon, no shame.
+      Built with neurodivergent developers in mind, but useful for any brain.
     </p>
 
     <div class="hero-actions">
@@ -635,18 +618,22 @@
   <!-- PROBLEM -->
   <section class="problem">
     <div class="section-label">// the problem</div>
-    <h2>You're not failing at tech.<br>Tech is failing you.</h2>
+    <h2>Developer tools shouldn't feel like a wall.</h2>
     <p>
-      Error messages written for machines. Git commands that need a PhD to understand. 
+      Error messages written for machines. Git commands that need a PhD to understand.
       Infrastructure docs that assume you already know everything.
     </p>
     <p>
-      If your brain works differently — ADHD, autism, dyslexia, or just wired uniquely — 
-      most developer tools weren't designed for you.
+      You don't need a diagnosis to find this stuff overwhelming. But if your brain works
+      differently — ADHD, autism, dyslexia, or just wired uniquely — these tools were
+      built specifically with you in mind.
+    </p>
+    <p>
+      Everyone deserves tools that work with their brain, not against it.
     </p>
     <div class="truth-box">
-      <strong>The ADHDeveloper Toolkit exists because one frustrated developer got tired of 
-      feeling like the problem.</strong> They weren't. And neither are you.
+      <strong>The ADHDeveloper Toolkit exists because one frustrated developer got tired of
+      feeling like the problem.</strong> They weren't. And neither are you — whatever your brain looks like.
     </div>
   </section>
 
@@ -659,13 +646,12 @@
 
     <div class="tools-grid">
 
-      <!-- GitSpeak -->
       <div class="tool-card gitspeak fade-in">
         <div class="tool-icon">🗣️</div>
         <div class="tool-name">GitSpeak</div>
         <div class="tool-tagline">git without the syntax</div>
         <p class="tool-desc">
-          Type one word. GitSpeak handles the rest. Stage, commit, push — 
+          Type one word. GitSpeak handles the rest. Stage, commit, push —
           in plain English. No more forgetting the right flags.
         </p>
         <div class="tool-commands">
@@ -691,13 +677,12 @@
         </div>
       </div>
 
-      <!-- Decipher -->
       <div class="tool-card decipher fade-in">
         <div class="tool-icon">🔍</div>
         <div class="tool-name">Decipher</div>
         <div class="tool-tagline">errors in plain english</div>
         <p class="tool-desc">
-          Paste any error message. Get a plain English explanation, 
+          Paste any error message. Get a plain English explanation,
           what caused it, and exactly how to fix it. No Stack Overflow required.
         </p>
         <div class="tool-commands">
@@ -718,13 +703,12 @@
         </div>
       </div>
 
-      <!-- ansible-forge -->
       <div class="tool-card forge fade-in">
         <div class="tool-icon">⚒️</div>
         <div class="tool-name">ansible-forge</div>
         <div class="tool-tagline">infrastructure without the overwhelm</div>
         <p class="tool-desc">
-          Scaffold Ansible roles in seconds. Type 3 letters, pick a service, 
+          Scaffold Ansible roles in seconds. Type 3 letters, pick a service,
           watch the boilerplate build itself. No more staring at blank YAML files.
         </p>
         <div class="tool-commands">
@@ -757,28 +741,29 @@
     <div class="install-box">
       <span class="install-prompt">$</span>
       <span>curl -fsSL https://raw.githubusercontent.com/phoenixsoftwebbrighton/adhddeveloper-toolkit/main/install.sh | bash</span>
-      <button class="copy-btn" onclick="navigator.clipboard.writeText('curl -fsSL https://raw.githubusercontent.com/phoenixsoftwebbrighton/adhddeveloper-toolkit/main/install.sh | bash');this.textContent='Copied!'">Copy</button>    </div>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText('curl -fsSL https://raw.githubusercontent.com/phoenixsoftwebbrighton/adhddeveloper-toolkit/main/install.sh | bash');this.textContent='Copied!'">Copy</button>
+    </div>
 
     <div class="install-steps">
       <div class="step">
         <div class="step-num">01 //</div>
-        <div class="step-title">Clone the repo</div>
+        <div class="step-title">Run the installer</div>
         <div class="step-desc">One command gets you everything.</div>
       </div>
       <div class="step">
         <div class="step-num">02 //</div>
-        <div class="step-title">Install dependencies</div>
-        <div class="step-desc">pip install rich — that's it.</div>
+        <div class="step-title">Reload your shell</div>
+        <div class="step-desc">source ~/.zshrc — that's it.</div>
       </div>
       <div class="step">
         <div class="step-num">03 //</div>
-        <div class="step-title">Add aliases</div>
+        <div class="step-title">Start using it</div>
         <div class="step-desc">gs, decipher, forge — ready to go.</div>
       </div>
       <div class="step">
         <div class="step-num">04 //</div>
-        <div class="step-title">Start building</div>
-        <div class="step-desc">Your brain will thank you.</div>
+        <div class="step-title">Your brain thanks you</div>
+        <div class="step-desc">Tools that work with you, not against you.</div>
       </div>
     </div>
   </section>
@@ -789,8 +774,13 @@
     <h2>You're not alone in this.</h2>
 
     <p>
-      This toolkit was built in Brighton, UK by a neurodivergent developer 
+      This toolkit was built in Brighton, UK by a neurodivergent developer
       who got tired of feeling like the problem. It wasn't them. It was the tools.
+    </p>
+
+    <p>
+      Whether your brain is wired differently or you just want developer tools
+      that actually make sense — you're welcome here.
     </p>
 
     <div class="quote">
@@ -799,8 +789,9 @@
     </div>
 
     <p>
-      Every error you submit to Decipher makes it smarter for the next person. 
-      Every tool you use helps prove that accessible developer tools aren't just nice to have — they're necessary.
+      Every error you submit to Decipher makes it smarter for the next person.
+      Every tool you use helps prove that accessible developer tools aren't just
+      nice to have — they're necessary.
     </p>
 
     <div class="community-links">
@@ -812,8 +803,8 @@
   <!-- FOOTER -->
   <footer>
     <p>
-      Built with 🧠 in Brighton, UK · 
-      <a href="https://github.com/phoenixsoftwebbrighton">GitHub</a> · 
+      Built with 🧠 in Brighton, UK ·
+      <a href="https://github.com/phoenixsoftwebbrighton">GitHub</a> ·
       Open source · Free forever
     </p>
     <p style="margin-top: 0.5rem; font-size: 0.75rem;">
@@ -822,7 +813,6 @@
   </footer>
 
   <script>
-    // Scroll fade-in
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
