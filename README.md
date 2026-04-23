@@ -8,6 +8,8 @@ CLI tools built for developers whose brains work differently. Plain English. No 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-purple.svg)](https://www.python.org/downloads/)
 [![Built in Brighton](https://img.shields.io/badge/built%20in-Brighton%20UK-cyan.svg)]()
 
+🌐 **[Visit the website](https://phoenixsoftwebbrighton.github.io/adhddeveloper-toolkit)**
+
 ---
 
 ## 🤔 Why does this exist?
@@ -22,7 +24,8 @@ If your brain works differently — ADHD, autism, dyslexia, or just wired unique
 
 ## 🛠️ The Tools
 
-### 🗣️ GitSpeak — Git without the syntax
+### 🗣️ [GitSpeak](https://github.com/phoenixsoftwebbrighton/gitspeak) — Git without the syntax
+
 Type one word. GitSpeak handles the rest.
 
 ```bash
@@ -35,7 +38,8 @@ gitspeak → pull        # grab latest changes
 gitspeak → log         # recent commits in plain English
 ```
 
-### 🔍 Decipher — Errors in plain English
+### 🔍 [Decipher](https://github.com/phoenixsoftwebbrighton/decipher) — Errors in plain English
+
 Paste any error. Get a plain English explanation + exactly how to fix it.
 
 ```bash
@@ -46,7 +50,8 @@ Paste error here: Permission denied (publickey)
 → How to fix it:  Check your SSH config and specify the right username
 ```
 
-### ⚒️ ansible-forge — Infrastructure without the overwhelm
+### ⚒️ [ansible-forge](https://github.com/phoenixsoftwebbrighton/ansible-forge) — Infrastructure without the overwhelm
+
 Type 3 letters. Pick a service. Watch the boilerplate build itself.
 
 ```bash
@@ -73,18 +78,23 @@ forge → unb     # suggests: unbound — recursive DNS resolver
 git clone https://github.com/phoenixsoftwebbrighton/adhddeveloper-toolkit.git
 cd adhddeveloper-toolkit
 
-# 2. Install dependencies
+# 2. Clone the individual tools
+git clone https://github.com/phoenixsoftwebbrighton/gitspeak.git
+git clone https://github.com/phoenixsoftwebbrighton/decipher.git
+git clone https://github.com/phoenixsoftwebbrighton/ansible-forge.git
+
+# 3. Install dependencies
 pip install rich
 
-# 3. Add aliases to your shell (~/.zshrc or ~/.bashrc)
+# 4. Add aliases to your shell (~/.zshrc or ~/.bashrc)
 echo 'alias gs="python3 ~/adhddeveloper-toolkit/gitspeak/gitspeak.py"' >> ~/.zshrc
 echo 'alias decipher="python3 ~/adhddeveloper-toolkit/decipher/decipher.py"' >> ~/.zshrc
 echo 'alias forge="python3 ~/adhddeveloper-toolkit/ansible-forge/ansible-forge.py"' >> ~/.zshrc
 
-# 4. Reload your shell
+# 5. Reload your shell
 source ~/.zshrc
 
-# 5. You're ready
+# 6. You're ready
 gs
 ```
 
@@ -99,6 +109,17 @@ Every tool in this kit follows the same rules:
 - **Explain the why** — not just what to do, but why
 - **Never make you feel stupid** — because you're not
 - **Local compute only** — nothing phones home, privacy first
+
+---
+
+## 🗺️ Roadmap
+
+- [ ] Install script — one command to set everything up
+- [ ] ansible-forge online package search
+- [ ] Decipher community database growth
+- [ ] Session wrap-up tool
+- [ ] Guided decision tool
+- [ ] Windows support
 
 ---
 
