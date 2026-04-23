@@ -93,7 +93,12 @@ echo ""
 
 # ── Install dependencies ──────────────────────
 echo -e "${CYAN}→ Installing dependencies...${RESET}"
-pip3 install rich --quiet
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    pip3 install rich --quiet
+else
+    pip3 install rich --quiet --break-system-packages 2>/dev/null || \
+    pip3 install rich --quiet
+fi
 echo -e "${GREEN}✓ Dependencies installed${RESET}"
 echo ""
 
