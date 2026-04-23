@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADHDeveloper Toolkit — The toolkit that speaks your language, not computer's</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #08080f;
+      --surface:     #0f0f1a;
+      --card:        #13131f;
+      --purple:      #a855f7;
+      --purple-dim:  rgba(168,85,247,0.12);
+      --purple-glow: rgba(168,85,247,0.25);
+      --cyan:        #06b6d4;
+      --cyan-dim:    rgba(6,182,212,0.12);
+      --amber:       #f59e0b;
+      --amber-dim:   rgba(245,158,11,0.12);
+      --orange:      #f97316;
+      --orange-dim:  rgba(249,115,22,0.12);
+      --text:        #f1f0ff;
+      --muted:       #6b6a85;
+      --border:      rgba(255,255,255,0.06);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(8,8,15,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .nav-brain {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--purple), var(--cyan));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .nav-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+
+    .nav-name span { color: var(--purple); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--purple);
+      color: #fff !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: opacity 0.2s !important;
+    }
+
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--purple-dim);
+      border: 1px solid rgba(168,85,247,0.3);
+      color: var(--purple);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s ease 0.1s both;
+    }
+
+    .hero-brain {
+      width: 72px;
+      height: 72px;
+      background: linear-gradient(135deg, var(--purple), var(--cyan));
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      box-shadow: 0 0 40px var(--purple-glow);
+    }
+
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      text-align: left;
+    }
+
+    .hero-title .adhd { color: var(--purple); }
+    .hero-title .toolkit {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-top: 6px;
+      font-weight: 400;
+    }
+
+    .hero-tagline {
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      color: var(--text);
+      max-width: 600px;
+      margin: 0 auto 1rem;
+      animation: fadeUp 0.6s ease 0.2s both;
+    }
+
+    .hero-tagline em {
+      font-style: normal;
+      color: var(--purple);
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      animation: fadeUp 0.6s ease 0.3s both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp 0.6s ease 0.4s both;
+    }
+
+    .btn-primary {
+      background: var(--purple);
+      color: #fff;
+      padding: 0.85rem 2rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: opacity 0.2s, transform 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      padding: 0.85rem 2rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, transform 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-secondary:hover { border-color: var(--purple); transform: translateY(-2px); }
+
+    /* ── PROBLEM ── */
+    .problem {
+      padding: 6rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 1rem;
+    }
+
+    .problem h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+    }
+
+    .problem p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 1rem;
+    }
+
+    .truth-box {
+      background: var(--purple-dim);
+      border: 1px solid rgba(168,85,247,0.25);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-top: 3rem;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .truth-box strong { color: var(--purple); }
+
+    /* ── TOOLS ── */
+    .tools {
+      padding: 4rem 2rem 6rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .tools-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .tools-header h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      letter-spacing: -0.02em;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .tool-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tool-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      border-radius: 20px 20px 0 0;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .tool-card.gitspeak::before { background: var(--cyan); }
+    .tool-card.gitspeak:hover { border-color: rgba(6,182,212,0.3); box-shadow: 0 8px 40px rgba(6,182,212,0.1); }
+
+    .tool-card.decipher::before { background: var(--amber); }
+    .tool-card.decipher:hover { border-color: rgba(245,158,11,0.3); box-shadow: 0 8px 40px rgba(245,158,11,0.1); }
+
+    .tool-card.forge::before { background: var(--orange); }
+    .tool-card.forge:hover { border-color: rgba(249,115,22,0.3); box-shadow: 0 8px 40px rgba(249,115,22,0.1); }
+
+    .tool-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .gitspeak .tool-icon { background: var(--cyan-dim); }
+    .decipher .tool-icon { background: var(--amber-dim); }
+    .forge .tool-icon { background: var(--orange-dim); }
+
+    .tool-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .gitspeak .tool-name { color: var(--cyan); }
+    .decipher .tool-name { color: var(--amber); }
+    .forge .tool-name { color: var(--orange); }
+
+    .tool-tagline {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-family: 'Space Mono', monospace;
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+    }
+
+    .tool-desc {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .tool-commands {
+      background: var(--surface);
+      border-radius: 10px;
+      padding: 1rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+    }
+
+    .cmd-line {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0;
+    }
+
+    .cmd-prompt { color: var(--muted); }
+    .gitspeak .cmd-action { color: var(--cyan); }
+    .decipher .cmd-action { color: var(--amber); }
+    .forge .cmd-action { color: var(--orange); }
+    .cmd-desc { color: #444; font-size: 0.7rem; }
+
+    /* ── INSTALL ── */
+    .install {
+      padding: 6rem 2rem;
+      background: var(--surface);
+      text-align: center;
+    }
+
+    .install h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .install p {
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .install-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.95rem;
+      color: var(--purple);
+      max-width: 100%;
+      overflow-x: auto;
+    }
+
+    .install-prompt { color: var(--muted); }
+
+    .copy-btn {
+      background: var(--purple-dim);
+      border: 1px solid rgba(168,85,247,0.3);
+      color: var(--purple);
+      padding: 0.3rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .copy-btn:hover { background: rgba(168,85,247,0.2); }
+
+    .install-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      max-width: 800px;
+      margin: 3rem auto 0;
+    }
+
+    .step {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      text-align: left;
+    }
+
+    .step-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--purple);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .step-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* ── COMMUNITY ── */
+    .community {
+      padding: 6rem 2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .community h2 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+
+    .community p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+    }
+
+    .quote {
+      background: var(--purple-dim);
+      border-left: 3px solid var(--purple);
+      border-radius: 0 12px 12px 0;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      text-align: left;
+      font-size: 1.1rem;
+      color: var(--text);
+      font-style: italic;
+    }
+
+    .quote-author {
+      font-style: normal;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.75rem;
+      display: block;
+    }
+
+    .community-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    footer a { color: var(--purple); text-decoration: none; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero-logo { flex-direction: column; }
+      .hero-title { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <div class="nav-brain">🧠</div>
+      <span class="nav-name"><span>ADHD</span>eveloper Toolkit</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#tools">Tools</a></li>
+      <li><a href="#install">Install</a></li>
+      <li><a href="#community">Community</a></li>
+      <li><a href="https://github.com/phoenixsoftwebbrighton" class="nav-cta">GitHub →</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">🚀 Open source — built by a neurodivergent dev</div>
+
+    <div class="hero-logo">
+      <div class="hero-brain">🧠</div>
+      <div class="hero-title">
+        <span class="adhd">ADHD</span>eveloper Toolkit
+        <span class="toolkit">// your essential developer toolkit</span>
+      </div>
+    </div>
+
+    <p class="hero-tagline">
+      The toolkit that speaks <em>your language</em> — not computer's.
+    </p>
+
+    <p class="hero-sub">
+      CLI tools built for developers whose brains work differently. 
+      Plain English. No jargon. No shame.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#install" class="btn-primary">Get started free →</a>
+      <a href="#tools" class="btn-secondary">See the tools</a>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="problem">
+    <div class="section-label">// the problem</div>
+    <h2>You're not failing at tech.<br>Tech is failing you.</h2>
+    <p>
+      Error messages written for machines. Git commands that need a PhD to understand. 
+      Infrastructure docs that assume you already know everything.
+    </p>
+    <p>
+      If your brain works differently — ADHD, autism, dyslexia, or just wired uniquely — 
+      most developer tools weren't designed for you.
+    </p>
+    <div class="truth-box">
+      <strong>The ADHDeveloper Toolkit exists because one frustrated developer got tired of 
+      feeling like the problem.</strong> They weren't. And neither are you.
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <section class="tools" id="tools">
+    <div class="tools-header">
+      <div class="section-label">// the toolkit</div>
+      <h2>Three tools. One mission.</h2>
+    </div>
+
+    <div class="tools-grid">
+
+      <!-- GitSpeak -->
+      <div class="tool-card gitspeak fade-in">
+        <div class="tool-icon">🗣️</div>
+        <div class="tool-name">GitSpeak</div>
+        <div class="tool-tagline">git without the syntax</div>
+        <p class="tool-desc">
+          Type one word. GitSpeak handles the rest. Stage, commit, push — 
+          in plain English. No more forgetting the right flags.
+        </p>
+        <div class="tool-commands">
+          <div class="cmd-line">
+            <span class="cmd-prompt">$</span>
+            <span class="cmd-action">gs</span>
+          </div>
+          <div class="cmd-line">
+            <span class="cmd-prompt">→</span>
+            <span class="cmd-action">save</span>
+            <span class="cmd-desc">— stage + commit + push in one go</span>
+          </div>
+          <div class="cmd-line">
+            <span class="cmd-prompt">→</span>
+            <span class="cmd-action">undo</span>
+            <span class="cmd-desc">— safely undo last commit</span>
+          </div>
+          <div class="cmd-line">
+            <span class="cmd-prompt">→</span>
+            <span class="cmd-action">status</span>
+            <span class="cmd-desc">— see what's changed</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decipher -->
+      <div class="tool-card decipher fade-in">
+        <div class="tool-icon">🔍</div>
+        <div class="tool-name">Decipher</div>
+        <div class="tool-tagline">errors in plain english</div>
+        <p class="tool-desc">
+          Paste any error message. Get a plain English explanation, 
+          what caused it, and exactly how to fix it. No Stack Overflow required.
+        </p>
+        <div class="tool-commands">
+          <div class="cmd-line">
+            <span class="cmd-prompt">$</span>
+            <span class="cmd-action">decipher</span>
+          </div>
+          <div class="cmd-line">
+            <span class="cmd-prompt">→</span>
+            <span class="cmd-action">paste error</span>
+            <span class="cmd-desc">— get plain English back</span>
+          </div>
+          <div class="cmd-line">
+            <span class="cmd-prompt">→</span>
+            <span class="cmd-action">community</span>
+            <span class="cmd-desc">— submit unknown errors</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ansible-forge -->
+      <div class="tool-card forge fade-in">
+        <div class="tool-icon">⚒️</div>
+        <div class="tool-name">ansible-forge</div>
+        <div class="tool-tagline">infrastructure without the overwhelm</div>
+        <p class="tool-desc">
+          Scaffold Ansible roles in seconds. Type 3 letters, pick a service, 
+          watch the boilerplate build itself. No more staring at blank YAML files.
+        </p>
+        <div class="tool-commands">
+          <div class="cmd-line">
+            <span class="cmd-prompt">$</span>
+            <span class="cmd-action">forge</span>
+          </div>
+          <div class="cmd-line">
+            <span class="cmd-prompt">→</span>
+            <span class="cmd-action">pih</span>
+            <span class="cmd-desc">— scaffold pihole role</span>
+          </div>
+          <div class="cmd-line">
+            <span class="cmd-prompt">→</span>
+            <span class="cmd-action">doc</span>
+            <span class="cmd-desc">— scaffold docker role</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INSTALL -->
+  <section class="install" id="install">
+    <div class="section-label">// get started</div>
+    <h2>One command to get started</h2>
+    <p>Works on macOS and Linux. Python 3 required.</p>
+
+    <div class="install-box">
+      <span class="install-prompt">$</span>
+      <span>git clone https://github.com/phoenixsoftwebbrighton/adhddeveloper-toolkit.git</span>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText('git clone https://github.com/phoenixsoftwebbrighton/adhddeveloper-toolkit.git');this.textContent='Copied!'">Copy</button>
+    </div>
+
+    <div class="install-steps">
+      <div class="step">
+        <div class="step-num">01 //</div>
+        <div class="step-title">Clone the repo</div>
+        <div class="step-desc">One command gets you everything.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02 //</div>
+        <div class="step-title">Install dependencies</div>
+        <div class="step-desc">pip install rich — that's it.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03 //</div>
+        <div class="step-title">Add aliases</div>
+        <div class="step-desc">gs, decipher, forge — ready to go.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">04 //</div>
+        <div class="step-title">Start building</div>
+        <div class="step-desc">Your brain will thank you.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section class="community" id="community">
+    <div class="section-label">// built by someone like you</div>
+    <h2>You're not alone in this.</h2>
+
+    <p>
+      This toolkit was built in Brighton, UK by a neurodivergent developer 
+      who got tired of feeling like the problem. It wasn't them. It was the tools.
+    </p>
+
+    <div class="quote">
+      "Built for the developers who kept being told the problem was them. It wasn't."
+      <span class="quote-author">— Phoenix, founder of ADHDeveloper Toolkit</span>
+    </div>
+
+    <p>
+      Every error you submit to Decipher makes it smarter for the next person. 
+      Every tool you use helps prove that accessible developer tools aren't just nice to have — they're necessary.
+    </p>
+
+    <div class="community-links">
+      <a href="https://github.com/phoenixsoftwebbrighton/adhddeveloper-toolkit" class="btn-primary">⭐ Star on GitHub</a>
+      <a href="https://github.com/phoenixsoftwebbrighton/adhddeveloper-toolkit/issues" class="btn-secondary">💬 Contribute</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      Built with 🧠 in Brighton, UK · 
+      <a href="https://github.com/phoenixsoftwebbrighton">GitHub</a> · 
+      Open source · Free forever
+    </p>
+    <p style="margin-top: 0.5rem; font-size: 0.75rem;">
+      ADHDeveloper Toolkit © 2026 — made for brains that work differently
+    </p>
+  </footer>
+
+  <script>
+    // Scroll fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
