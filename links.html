@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHOENIX // LINKS</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050a0f;
+            --bg2: #0a1520;
+            --cyan: #00e5ff;
+            --cyan-dim: #00b8cc;
+            --cyan-glow: rgba(0, 229, 255, 0.15);
+            --green: #00e5a0;
+            --amber: #f5a623;
+            --text: #c8d8e8;
+            --text-dim: #4a6070;
+            --border: rgba(0, 229, 255, 0.15);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'JetBrains Mono', monospace;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Scanline effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 229, 255, 0.015) 2px,
+                rgba(0, 229, 255, 0.015) 4px
+            );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Grid background */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeDown 0.6s ease forwards;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid var(--cyan);
+            box-shadow: 0 0 20px var(--cyan-glow), 0 0 60px var(--cyan-glow);
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            background: var(--bg2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .avatar::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(0,229,255,0.1), transparent);
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--green);
+            border-radius: 50%;
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+            box-shadow: 0 0 8px var(--green);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .name {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--cyan);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+        }
+
+        .tagline {
+            font-size: 11px;
+            color: var(--text-dim);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-top: 6px;
+        }
+
+        .tagline span {
+            color: var(--green);
+        }
+
+        /* Section label */
+        .section-label {
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            margin-top: 28px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* Links */
+        .link-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 18px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--bg2);
+            color: var(--text);
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeUp 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .link-card::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 2px;
+            background: var(--accent, var(--cyan));
+            box-shadow: 0 0 8px var(--accent, var(--cyan));
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .link-card:hover {
+            border-color: var(--accent, var(--cyan));
+            background: rgba(0, 229, 255, 0.05);
+            transform: translateX(4px);
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.08);
+        }
+
+        .link-card:hover::before {
+            opacity: 1;
+        }
+
+        .link-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 4px;
+            background: rgba(0, 229, 255, 0.08);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .link-info {
+            flex: 1;
+        }
+
+        .link-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #e2e8f0;
+            letter-spacing: 0.03em;
+        }
+
+        .link-desc {
+            font-size: 10px;
+            color: var(--text-dim);
+            margin-top: 2px;
+            letter-spacing: 0.05em;
+        }
+
+        .link-arrow {
+            font-size: 12px;
+            color: var(--text-dim);
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        .link-card:hover .link-arrow {
+            color: var(--accent, var(--cyan));
+            transform: translateX(3px);
+        }
+
+        /* Animation delays */
+        .link-card:nth-child(1) { animation-delay: 0.1s; }
+        .link-card:nth-child(2) { animation-delay: 0.15s; }
+        .link-card:nth-child(3) { animation-delay: 0.2s; }
+        .link-card:nth-child(4) { animation-delay: 0.25s; }
+        .link-card:nth-child(5) { animation-delay: 0.3s; }
+        .link-card:nth-child(6) { animation-delay: 0.35s; }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 36px;
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
+            animation: fadeUp 0.5s 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .footer span { color: var(--cyan); }
+
+        /* Animations */
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--green); }
+            50% { opacity: 0.5; box-shadow: 0 0 4px var(--green); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <div class="avatar">
+                🧠
+                <div class="status-dot"></div>
+            </div>
+            <div class="name">Phoenix</div>
+            <div class="tagline">Self-taught dev · Brighton, UK · <span>ONLINE</span></div>
+        </div>
+
+        <div class="section-label">// toolkit</div>
+
+        <a href="https://phoenixsoftwebbrighton.github.io/adhddeveloper-toolkit" target="_blank" class="link-card" style="--accent: #00e5a0;">
+            <div class="link-icon">⚒️</div>
+            <div class="link-info">
+                <div class="link-title">ADHDeveloper Toolkit</div>
+                <div class="link-desc">CLI tools built for brains that work differently</div>
+            </div>
+            <div class="link-arrow">→</div>
+        </a>
+
+        <a href="https://github.com/phoenixsoftwebbrighton/adhddeveloper-toolkit" target="_blank" class="link-card" style="--accent: #e2e8f0;">
+            <div class="link-icon">⭐</div>
+            <div class="link-info">
+                <div class="link-title">GitHub — Star the Repo</div>
+                <div class="link-desc">Open source · MIT licensed · contributions welcome</div>
+            </div>
+            <div class="link-arrow">→</div>
+        </a>
+
+        <div class="section-label">// writing</div>
+
+        <a href="https://phoenixforge.substack.com" target="_blank" class="link-card" style="--accent: #f5a623;">
+            <div class="link-icon">📝</div>
+            <div class="link-info">
+                <div class="link-title">Phoenix Forge — Substack</div>
+                <div class="link-desc">Building in public · homelab · developer tools</div>
+            </div>
+            <div class="link-arrow">→</div>
+        </a>
+
+        <div class="section-label">// social</div>
+
+        <a href="https://www.facebook.com/profile.php?id=61583844622938" target="_blank" class="link-card" style="--accent: #4a9eff;">
+            <div class="link-icon">📘</div>
+            <div class="link-info">
+                <div class="link-title">Phoenix Softweb — Facebook Page</div>
+                <div class="link-desc">Updates, releases and homelab content</div>
+            </div>
+            <div class="link-arrow">→</div>
+        </a>
+
+        <a href="https://www.facebook.com/profile.php?id=61578329953426" target="_blank" class="link-card" style="--accent: #4a9eff;">
+            <div class="link-icon">👤</div>
+            <div class="link-info">
+                <div class="link-title">Personal Facebook</div>
+                <div class="link-desc">The human behind the terminal</div>
+            </div>
+            <div class="link-arrow">→</div>
+        </a>
+
+        <div class="footer">
+            PHOENIX_SOFTWEB // BRIGHTON, UK<br>
+            <span>Built different. For brains that work differently.</span>
+        </div>
+
+    </div>
+</body>
+</html>
