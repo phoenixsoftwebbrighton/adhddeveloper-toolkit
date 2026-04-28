@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# macOS thumbnail cache
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS generated files
+desktop.ini
+
+# Build outputs (if ever added)
+build/
+dist/
